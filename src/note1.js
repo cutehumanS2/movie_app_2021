@@ -60,11 +60,12 @@
 
 (*) 5. 구조 분해 할당으로 props 사용하기 : ES6
 - 점 연산자 사용 안 해도 됨
-- function Food({fav}){
+- function Food({ fav }){
     return <h1>I like {fav}</h1>;}
 - props에 포함된 데이터 개수 많아질 때 편리
 - 객체에 있는 키값을 편하게 추출할 수 있게 해줌
-
+- 리액트에서의 객체는 { fav } : 양쪽 공백 채우기
+- JSX의 JS는 {fav} : 공백x
 
 <--정리-->
 1. JSX는 HTML + JS
