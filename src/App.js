@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //App 컴포넌트 안에 Potato 컴포넌트 만들 수 있음
 //-> Movie() -> Food() 로 변경
@@ -7,11 +8,12 @@ function Food(props){
     return <h1>I love {props.fav}</h1>; //JSX 
 }*/
 //구조 분해 할당 방식(ES6)
-function Food({ name, picture }){
+function Food({ name, picture, rating }){
     return (
     <div>
         <h2>I like {name}</h2>
-        <img src = {picture}/>
+        <h4>{rating}/5.0</h4>
+        <img src={picture} alt={name}/>
     </div>
     );
 }
@@ -55,15 +57,34 @@ const foodILike = [
     rating:4.7
 }];
 
+//기존의 화살표 함수를 일반함수로 작성하는 법
+/*function renderFood(dish){
+    return <Food name={dish.name} picture={dish.image}/>;
+}*/
+
+//화살표 함수로 정의하는 법
+//const rederFood = dish => <Food name={dish.name} picture={dish.image}/>;
+
 //App 이라는 component 정의
 function App(){
+    //console.log(foodILike.map(renderFood));
     return (
         <div>
            {foodILike.map(dish => (
-            <Food name={dish.name} picture={dish.image}/>
+               <Food 
+               key={dish.id} 
+               name={dish.name} 
+               picture={dish.image}
+               rating={dish.rating}/>
            ))}
         </div>
     );
 }
+
+Food.propTypes = {
+    name: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
+    rating: PropTypes.number
+};
 
 export default App;
